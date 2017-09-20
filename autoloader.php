@@ -1,12 +1,13 @@
 <?php
 /**
- * Plugin Name: Bedrock Autoloader
- * Plugin URI: https://github.com/roots/bedrock/
+ * Plugin Name: Autoloader
+ * Plugin URI: https://github.com/littlebizzy/autoloader/
  * Description: An autoloader that enables standard plugins to be required just like must-use plugins. The autoloaded plugins are included during mu-plugin loading. An asterisk (*) next to the name of the plugin designates the plugins that have been autoloaded.
  * Version: 1.0.0
- * Author: Roots
- * Author URI: https://roots.io/
- * License: MIT License
+ * Author: LittleBizzy
+ * Author URI: https://www.littlebizzy.com
+ * License: GPL3
+ * License URI: http://www.gnu.org/licenses/gpl-3.0.html
  */
 
 namespace Roots\Bedrock;
