@@ -1,14 +1,15 @@
 <?php
-/**
- * Plugin Name: Autoloader
- * Plugin URI: https://github.com/littlebizzy/autoloader/
- * Description: An autoloader that enables standard plugins to be required just like must-use plugins. The autoloaded plugins are included during mu-plugin loading. An asterisk (*) next to the name of the plugin designates the plugins that have been autoloaded.
- * Version: 1.0.0
- * Author: LittleBizzy
- * Author URI: https://www.littlebizzy.com
- * License: GPL3
- * License URI: http://www.gnu.org/licenses/gpl-3.0.html
- */
+/*
+Plugin Name: Autoloader
+Plugin URI: https://www.littlebizzy.com/plugins/autoloader
+Description: Enables standard WordPress plugins contained in a folder to be loaded in the mu-plugins directory and loaded prior to others (forked from Bedrock).
+Version: 1.1.1
+Author: LittleBizzy
+Author URI: https://www.littlebizzy.com
+License: GPLv3
+License URI: http://www.gnu.org/licenses/gpl-3.0.html
+Prefix: ATOLDR
+*/
 
 namespace Roots\Bedrock;
 
