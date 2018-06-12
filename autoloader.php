@@ -170,7 +170,7 @@ class Autoloader {
 			return;
 		}
 
-		foreach (self::$activated as $plugin_file => $plugin_info) {
+		foreach (self::$activated as $plugin_file) {
 			do_action('activate_' . $plugin_file);
 		}
 	}
