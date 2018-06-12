@@ -85,7 +85,7 @@ class Autoloader {
 
 		array_map(static function () {
 			include_once(WPMU_PLUGIN_DIR . '/' . func_get_args()[0]);
-		}, array_keys(self::$cache['plugins']));
+		}, self::$cache['plugins']);
 
 		$this->pluginHooks();
     }
@@ -127,7 +127,7 @@ class Autoloader {
 	 */
 	private function checkCache() {
 
-		$cache = get_site_option('bedrock_autoloader');
+		$cache = get_site_option('littlebizzy_autoloader');
 		if ($cache === false) {
 			$this->updateCache();
 			return;
@@ -151,10 +151,10 @@ class Autoloader {
 		self::$mu_plugins   = get_mu_plugins();
 		$plugins            = array_diff_key(self::$auto_plugins, self::$mu_plugins);
 		$rebuild            = !is_array(self::$cache['plugins']);
-		self::$activated    = ($rebuild) ? $plugins : array_diff_key($plugins, self::$cache['plugins']);
-		self::$cache        = array('plugins' => $plugins, 'count' => $this->countPlugins(false));
+		self::$activated    = ($rebuild) ? $plugins : array_diff(array_keys($plugins), self::$cache['plugins']);
+		self::$cache        = array('plugins' => array_keys($plugins), 'count' => $this->countPlugins(false));
 
-		update_site_option('bedrock_autoloader', self::$cache);
+		update_site_option('littlebizzy_autoloader', self::$cache);
 	}
 
 
@@ -182,7 +182,7 @@ class Autoloader {
 	 */
 	private function validatePlugins() {
 
-		foreach (self::$cache['plugins'] as $plugin_file => $plugin_info) {
+		foreach (self::$cache['plugins'] as $plugin_file) {
 			if (!file_exists(WPMU_PLUGIN_DIR . '/' . $plugin_file)) {
 				$this->updateCache();
 				break;
