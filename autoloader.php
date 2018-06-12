@@ -152,7 +152,7 @@ class Autoloader {
 		$plugins            = array_diff_key(self::$auto_plugins, self::$mu_plugins);
 		$rebuild            = !is_array(self::$cache['plugins']);
 		self::$activated    = ($rebuild) ? $plugins : array_diff_key($plugins, self::$cache['plugins']);
-		self::$cache        = array('plugins' => $plugins, 'count' => $this->countPlugins());
+		self::$cache        = array('plugins' => $plugins, 'count' => $this->countPlugins(false));
 
 		update_site_option('bedrock_autoloader', self::$cache);
 	}
@@ -200,16 +200,13 @@ class Autoloader {
 	 *
 	 * @return int Number of autoloaded plugins.
 	 */
-	private function countPlugins() {
+	private function countPlugins($updateCache = true) {
 
-		if (isset(self::$count)) {
-			return self::$count;
+		if (!isset(self::$count)) {
+			self::$count = count(glob(WPMU_PLUGIN_DIR . '/*/', GLOB_ONLYDIR | GLOB_NOSORT));
 		}
 
-		$count = count(glob(WPMU_PLUGIN_DIR . '/*/', GLOB_ONLYDIR | GLOB_NOSORT));
-
-		if (!isset(self::$cache['count']) || $count != self::$cache['count']) {
-			self::$count = $count;
+		if ($updateCache && (!isset(self::$cache['count']) || self::$count != self::$cache['count'])) {
 			$this->updateCache();
 		}
 
