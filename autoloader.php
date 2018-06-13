@@ -2,7 +2,7 @@
 /*
 Plugin Name: Autoloader
 Plugin URI: https://www.littlebizzy.com/plugins/autoloader
-Description: Enables standard WordPress plugins contained in a folder to be loaded in the mu-plugins directory and loaded prior to others (forked from Bedrock).
+Description: Enables standard WordPress plugins contained in a folder to be placed in the mu-plugins directory and loaded prior to others (forked from Bedrock).
 Version: 1.1.0
 Author: LittleBizzy
 Author URI: https://www.littlebizzy.com
