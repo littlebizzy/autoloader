@@ -2,10 +2,21 @@
 
 Enables standard WordPress plugins contained in a directory to be placed in the mu-plugins directory and loaded prior to others (forked from Bedrock).
 
-* Plugin Homepage: https://www.littlebizzy.com/plugins/autoloader
-* Free Facebook support group: https://www.facebook.com/groups/littlebizzy/
+* [Plugin Homepage (LittleBizzy.com)](https://www.littlebizzy.com/plugins/autoloader)
+* [Free Facebook Group](https://www.facebook.com/groups/littlebizzy/)
 
-**Please do not submit Pull Requests. Instead, kindly create a new Issue with relevant information.**
+### Defined Constants
+
+    /* Plugin Meta */
+    define('DISABLE_NAG_NOTICES', true);
+
+### Support Issues
+
+*Please do not submit Pull Requests. Instead, kindly create a new Issue with relevant information if you are an experienced developer, otherwise post your comments in our free Facebook group.*
+
+***No emails, please! Thank you.***
+
+----
 
 ## Changelog
 
