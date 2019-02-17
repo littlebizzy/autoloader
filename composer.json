@@ -1,0 +1,16 @@
+{
+    "name": "littlebizzy/autoloader",
+    "type": "wordpress-plugin",
+    "license": "GPLv3",
+    "homepage": "https://www.littlebizzy.com/plugins/autoloader",
+    "description": "Enables standard WordPress plugins contained in a directory to be placed in the mu-plugins directory and loaded prior to others (forked from Bedrock).",
+    "keywords": ["wordpress","plugin","autoloader","muplugins","mu plugins","must use plugins","roots","bedrock"],
+    "support": {
+        "issues": "https://github.com/littlebizzy/autoloader/issues",
+        "forum": "https://www.littlebizzy.com/members"
+    }
+    "require": {
+        "php": "^7.2",
+        "composer/installers": "~1.0"
+    }
+}
