@@ -1,6 +1,6 @@
 # Autoloader
 
-Enables standard WordPress plugins contained in a directory to be placed in the mu-plugins directory and loaded prior to others (forked from Bedrock).
+Enables standard WordPress plugins contained in a folder to be placed in the mu-plugins directory and loaded prior to others (forked from Bedrock).
 
 * [Plugin Homepage](https://www.littlebizzy.com/plugins/autoloader)
 * [Download Latest Version (ZIP)](https://github.com/littlebizzy/autoloader/archive/1.1.0.zip)
