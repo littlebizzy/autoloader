@@ -9,7 +9,7 @@ Enables standard WordPress plugins contained in a folder to be placed in the mu-
 ### Defined Constants
 
     /** Plugin Meta */
-    define('AUTOMATIC_UPDATE_PLUGINS', false); // default = false
+    // (n/a)
     
     /** Autoloader Functions */
     // (n/a)
