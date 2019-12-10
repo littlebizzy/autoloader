@@ -1,4 +1,5 @@
 <?php
+
 /*
 Plugin Name: Autoloader
 Plugin URI: https://www.littlebizzy.com/plugins/autoloader
@@ -11,15 +12,17 @@ License URI: http://www.gnu.org/licenses/gpl-3.0.html
 Prefix: ATOLDR
 */
 
+declare(strict_types=1);
+
 // Plugin namespace
 namespace LittleBizzy\Autoloader;
 
-// Block direct calls
-if (!function_exists('add_action'))
-	die;
+// Exit if accessed directly
+if( ! defined( 'ABSPATH' ) )
+	exit;
 
 // Check WP installation
-if (!is_blog_installed())
+if ( ! is_blog_installed() )
 	return;
 
 /**
@@ -56,13 +59,13 @@ class Autoloader {
 	 */
     public function __construct() {
 
-		if (isset(self::$_single))
+		if ( isset (self::$_single ) )
 			return;
 
 		self::$_single = $this;
 		self::$relative_path = '/../' . basename(__DIR__);
 
-		if (is_admin())
+		if ( is_admin() )
 			add_filter('show_advanced_plugins', [$this, 'showInAdmin'], 0, 2);
 
 		$this->loadPlugins();
@@ -71,15 +74,15 @@ class Autoloader {
 	/**
 	 * Run some checks then autoload our plugins.
 	 */
-    public function loadPlugins() {
+    public function loadPlugins(): void {
 
 		$this->checkCache();
 		$this->validatePlugins();
 		$this->countPlugins();
 
-		array_map(static function () {
+		array_map( static function () {
 			include_once(WPMU_PLUGIN_DIR . '/' . func_get_args()[0]);
-		}, self::$cache['plugins']);
+		}, self::$cache['plugins'] );
 
 		$this->pluginHooks();
     }
@@ -91,12 +94,12 @@ class Autoloader {
 	 * @return bool We return `false` to prevent WordPress from overriding our work
 	 * {@internal We add the plugin details ourselves, so we return false to disable the filter.}
 	 */
-    public function showInAdmin($show, $type) {
+    public function showInAdmin( bool $show, string $type): bool {
 
 		$screen = get_current_screen();
 		$current = is_multisite() ? 'plugins-network' : 'plugins';
 
-		if ($screen->{'base'} != $current || $type != 'mustuse' || !current_user_can('activate_plugins')) {
+		if ( $screen->{'base'} != $current || $type != 'mustuse' || !current_user_can('activate_plugins') ) {
 			return $show;
 		}
 
@@ -115,7 +118,7 @@ class Autoloader {
 	/**
 	 * This sets the cache or calls for an update
 	 */
-	private function checkCache() {
+	private function checkCache(): void {
 
 		$cache = get_site_option('littlebizzy_autoloader');
 		if ($cache === false) {
@@ -131,7 +134,7 @@ class Autoloader {
 	 * Check cache against current plugins for newly activated plugins.
 	 * After that, we can update the cache.
 	 */
-	private function updateCache() {
+	private function updateCache(): void {
 
 		require_once(ABSPATH . 'wp-admin/includes/plugin.php');
 
@@ -150,7 +153,7 @@ class Autoloader {
 	 * loaded as usual. Plugins are removed by deletion, so there's no way
 	 * to deactivate or uninstall.
 	 */
-	private function pluginHooks() {
+	private function pluginHooks(): void {
 
 		if (!is_array(self::$activated)) {
 			return;
@@ -164,7 +167,7 @@ class Autoloader {
 	/**
 	 * Check that the plugin file exists, if it doesn't update the cache.
 	 */
-	private function validatePlugins() {
+	private function validatePlugins(): void {
 
 		foreach (self::$cache['plugins'] as $plugin_file) {
 			if (!file_exists(WPMU_PLUGIN_DIR . '/' . $plugin_file)) {
@@ -182,7 +185,7 @@ class Autoloader {
 	 *
 	 * @return int Number of autoloaded plugins.
 	 */
-	private function countPlugins($updateCache = true) {
+	private function countPlugins( bool $updateCache = true ): string  {
 
 		if (!isset(self::$count)) {
 			self::$count = count(glob(WPMU_PLUGIN_DIR . '/*/', GLOB_ONLYDIR | GLOB_NOSORT));
