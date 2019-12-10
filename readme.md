@@ -3,7 +3,7 @@
 Enables standard WordPress plugins contained in a folder to be placed in the mu-plugins directory and loaded prior to others (forked from Bedrock).
 
 * [Plugin Homepage](https://www.littlebizzy.com/plugins/autoloader)
-* [Download Latest Version (ZIP)](https://github.com/littlebizzy/autoloader/archive/v1.1.0.zip)
+* [Download Latest Version (ZIP)](https://github.com/littlebizzy/autoloader/archive/v1.2.0.zip)
 * [**Become A LittleBizzy.com Member Today!**](https://www.littlebizzy.com/members)
 
 ### Defined Constants
