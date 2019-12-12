@@ -1,5 +1,8 @@
 ## Changelog
 
+### 1.2.1
+* HOTFIX: `PHP Fatal error: Uncaught TypeError: Return value of LittleBizzy\Autoloader\Autoloader::countPlugins() must be of the type string, integer returned in /var/www/html/wp-content/mu-plugins/autoloader.php:198`
+
 ### 1.2.0
 * added PHP `strict_types`
 * dropped support for PHP 5.x and earlier versions
