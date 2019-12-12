@@ -185,7 +185,7 @@ class Autoloader {
 	 *
 	 * @return int Number of autoloaded plugins.
 	 */
-	private function countPlugins( bool $updateCache = true ): string  {
+	private function countPlugins( bool $updateCache = true ): int  {
 
 		if (!isset(self::$count)) {
 			self::$count = count(glob(WPMU_PLUGIN_DIR . '/*/', GLOB_ONLYDIR | GLOB_NOSORT));
