@@ -4,6 +4,13 @@ Loads folder WordPress MU plugins
 
 ## Changelog
 
+### 2.0.0
+- code totally refactored for better efficiency
+- no more namespaces, only class `Autoloader`
+- `littlebizzy_autoloader` option now called `autoloader_cache`
+- supports PHP 7.0 to PHP 8.3
+- supports Multisite
+
 ### 1.2.1
 * HOTFIX: `PHP Fatal error: Uncaught TypeError: Return value of LittleBizzy\Autoloader\Autoloader::countPlugins() must be of the type string, integer returned in /var/www/html/wp-content/mu-plugins/autoloader.php:198`
 
