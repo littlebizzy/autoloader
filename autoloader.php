@@ -112,7 +112,7 @@ class Autoloader {
         }
 
         // Find plugins that are newly activated
-        $activated_plugins = array_diff(self::$cache['plugins'], self::$auto_plugins);
+        $activated_plugins = array_diff(self::$cache['plugins'], array_keys(self::$auto_plugins));
         foreach ($activated_plugins as $plugin_file) {
             do_action('activate_' . $plugin_file);
         }
@@ -130,13 +130,19 @@ class Autoloader {
             return $show;
         }
 
-        self::$auto_plugins = array_map(function ($plugin) {
-            $plugin['Name'] .= ' *'; // Append an asterisk to indicate it is autoloaded
-            return $plugin;
-        }, self::$auto_plugins);
+        // Ensure each plugin entry is valid and append an asterisk to its name
+        foreach (self::$auto_plugins as $plugin_path => $plugin) {
+            if (is_array($plugin) && isset($plugin['Name']) && is_string($plugin['Name'])) {
+                self::$auto_plugins[$plugin_path]['Name'] .= ' *';
+            }
+        }
 
-        // Merge autoloaded plugins into the MU plugins list
-        $GLOBALS['plugins']['mustuse'] = array_merge(self::$auto_plugins, get_mu_plugins());
+        // Merge autoloaded plugins into the MU plugins list, but do not override existing entries
+        $GLOBALS['plugins']['mustuse'] = array_merge(
+            get_mu_plugins(),
+            self::$auto_plugins
+        );
+
         return false;
     }
 }
